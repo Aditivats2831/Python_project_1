@@ -1,44 +1,98 @@
-''' Text-Based Adventure Game
-Description: An interactive game where players navigate through a story by making choices at each step.'''
+import time
 
-### Print a welcome message
-print("Welcome to the Haunted Mansion!") 
-print("The house is dated, creaky, and falling apart. You walk in the front door.")
-print("Do you want to enter the living room or the dining room?")
+def game_start():
+    print("Welcome to the Dungeon Adventure!")
+    time.sleep(1)
+    print("You find yourself standing at the entrance of a dark dungeon.")
+    time.sleep(1)
+    print("Your objective is to find the treasure hidden deep within.")
+    time.sleep(1)
+    print("Let's begin!\n")
+    time.sleep(1)
+    choose_path()
 
-### Prompt user for a choice
-roomChoice = input("> ")
+def choose_path():
+    print("You are at a crossroads. What path will you take?")
+    print("1. Go left")
+    print("2. Go right")
+    print("3. Go straight")
+    choice = input("Enter your choice (1/2/3): ")
+    
+    if choice == '1':
+        go_left()
+    elif choice == '2':
+        go_right()
+    elif choice == '3':
+        go_straight()
+    else:
+        print("Invalid choice. Please enter 1, 2, or 3.")
+        choose_path()
 
-if(roomChoice == "living room"):
-  print("You enter the living room.")
-  print("As you walk in, you see a sleeping pitbull guarding some gold jewelry.")
-  print("Do you want to steal the jewelry from the pitbull?")
+def go_left():
+    print("\nYou chose to go left.")
+    time.sleep(1)
+    print("You encounter a monster!")
+    time.sleep(1)
+    print("Fight or run?")
+    choice = input("Enter 'fight' or 'run': ")
+    
+    if choice.lower() == 'fight':
+        print("\nYou bravely fight the monster and defeat it!")
+        time.sleep(1)
+        print("You continue deeper into the dungeon.")
+        time.sleep(1)
+        choose_path()
+    elif choice.lower() == 'run':
+        print("\nYou run away from the monster.")
+        time.sleep(1)
+        print("You go back to the crossroads.")
+        time.sleep(1)
+        choose_path()
+    else:
+        print("Invalid choice. Please enter 'fight' or 'run'.")
+        go_left()
 
-  pitBullChoice = input("> ")
+def go_right():
+    print("\nYou chose to go right.")
+    time.sleep(1)
+    print("You find a locked door.")
+    time.sleep(1)
+    print("Search for key or return?")
+    choice = input("Enter 'search' or 'return': ")
+    
+    if choice.lower() == 'search':
+        print("\nYou search around and find the key!")
+        time.sleep(1)
+        print("You unlock the door and continue.")
+        time.sleep(1)
+        choose_path()
+    elif choice.lower() == 'return':
+        print("\nYou return to the crossroads.")
+        time.sleep(1)
+        choose_path()
+    else:
+        print("Invalid choice. Please enter 'search' or 'return'.")
+        go_right()
 
-  if(pitBullChoice == "yes"):
-    print("You attempt to steal the jewelry, but it wakes up and rips you to shreds.")
-    print("You are now dead.")
-  elif(pitBullChoice == "no"):
-    print("You decide to not steal the dog's jewelry.")
-    print("You turn around and leave the house safely.")
-  else:
-    print("Invalid choice. Please enter yes or no.")
-elif(roomChoice == "dining room"):
-  print("You chose to go into the dining room.")
-  print("As you walk in, you see a shiny vase on the table.")
-  print("Do you want to open the vase?")
+def go_straight():
+    print("\nYou chose to go straight.")
+    time.sleep(1)
+    print("You discover a treasure chest!")
+    time.sleep(1)
+    print("You found the treasure! You win!")
+    play_again()
 
-  vaseChoice = input("> ")
+def play_again():
+    print("\nDo you want to play again?")
+    choice = input("Enter 'yes' or 'no': ")
+    
+    if choice.lower() == 'yes':
+        game_start()
+    elif choice.lower() == 'no':
+        print("Thank you for playing!")
+    else:
+        print("Invalid choice. Please enter 'yes' or 'no'.")
+        play_again()
 
-  if(vaseChoice == "yes"):
-    print("You open the vase and find a pile of bones!")
-  elif(vaseChoice == "no"):
-    print("You decide not to open the shiny vase.")
-    print("As you turn to leave, you hear a cracking sound coming from the corner.")
-    print("A dark figure with glowing red eyes launches at you, knocking you unconcious")
-    print("You wake up in your bed. It was all a dream.")
-  else:
-    print("Invalid choice. Please enter yes or no.")
-else:
-  print("Invalid choice. Please enter living room or dining room.")
+if __name__ == "__main__":
+    game_start()
